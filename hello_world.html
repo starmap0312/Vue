@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+   <!--reference: https://nowills.blogspot.com/search/label/Vue%20js?&max-results=8-->
     <head>
         <meta charset="UTF-8">
         <title>Hello World</title>
@@ -11,11 +12,12 @@
         </div>
 
         <script>
+            var data = {
+                message:'Hello World!'
+            }
             new Vue({
                 el:'#app',
-                data:{
-                    message:'Hello World!'
-                }
+                data:data
             });
         </script>
     </body>
