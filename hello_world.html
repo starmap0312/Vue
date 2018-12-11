@@ -57,10 +57,79 @@
         <!-- example6: v-on:submit a form -->
         <div id="app6">
             <form action="submit.html" v-on:submit="handleIt">
-                <button type="submit">submit</button>
+                <button type="submit">click to submit</button>
             </form>
         </div>
+        <br>
 
+        <!-- example7: v-on:submit a form but prevent from taking action -->
+        <div id="app7">
+            <form action="submit.html" v-on:submit.prevent="handleIt">
+                <!-- besides .prevent, we also have: .stop., .self, .capture -->
+                <button type="submit">click to submit with prevent</button>
+            </form>
+        </div>
+        <br>
+
+        <!-- example8: v-for:a for-loop -->
+        <div id="app8">
+            <span v-for="num in 10">{{ num }}</span>
+        </div>
+        <br>
+
+        <!-- example9: v-for:two for-loop -->
+        <div id="app9">
+            <div v-for="i in 3">
+                <h3>{{ i }}</h3>
+                <div v-for="j in 3">{{ i }} x {{ j }}={{ i*j }}</div>
+            </div>
+        </div>
+        <br>
+
+        <!-- example10: v-for: for a list -->
+        <div id="app10">
+            <ul>
+                <li v-for="item in items">
+                    {{ item.message }}
+                </li>
+            </ul>
+        </div>
+        <br>
+
+        <!-- example11: v-for: for a list with index -->
+        <div id="app11">
+            <ul>
+                <li v-for="(item, index) in items">
+                    {{ parentMessage }} - {{ index }} - {{ item.message }}
+                </li>
+            </ul>
+        </div>
+        <br>
+
+        <!-- example12: v-bind:style: bind css style with Vue data -->
+        <div id="app12">
+            <div v-bind:style="{ color: myColor, fontSize: myFontSize + 'px' }">123</div>
+        </div>
+        <br>
+
+        <!-- example13: v-bind:style: bind css style with Vue data, in a way that is easier to maintain -->
+        <div id="app13">
+            <div v-bind:style="myStyle">123</div>
+        </div>
+        <br>
+
+        <!-- example14: v-bind:class: bind css class with Vue data  -->
+        <div id="app14">
+            <div v-bind:class="{ active: myCheck }">123</div>
+            <!-- i.e. <div class="active"> -->
+        </div>
+        <br>
+
+        <!-- example14: v-bind:class: bind multiple (dynamic) css classes with Vue data  -->
+        <div id="app15">
+            <div v-bind:class="{ active: myCheck , normal:myCheck2 }">123</div>
+            <!-- i.e. <div class="normal">, the binding can be changed dynamically based on Vue data -->
+        </div>
         <script>
             var data = {
                 message:'Hello World!'
@@ -111,8 +180,81 @@
                 el:'#app6',
                 methods:{
                     handleIt: function(){
-                        alert("here I am!");
+                        alert("submit!");
                     }
+                }
+            });
+
+            new Vue({
+                el:'#app7',
+                methods:{
+                    handleIt: function(){
+                        alert("submit:prevent!");
+                    }
+                }
+            });
+
+            new Vue({
+                el:'#app8'
+            });
+
+            new Vue({
+                el:'#app9'
+            });
+
+            new Vue({
+                el:'#app10',
+                data:{
+                    items: [
+                      { message: 'Apple' },
+                      { message: 'Banana' },
+                      { message: 'Coconut' }
+                    ]
+                }
+            });
+
+            new Vue({
+                el:'#app11',
+                data: {
+                  parentMessage: 'parent message',
+                  items: [
+                    { message: 'item1 message' },
+                    { message: 'item2 message' },
+                    { message: 'item3 message' }
+                  ]
+                }
+            });
+
+            new Vue({
+                el:'#app12',
+                data:{
+                   myColor: 'red',
+                   myFontSize: 30
+                }
+            });
+
+            new Vue({
+                el:'#app13',
+                data:{
+                   myStyle: {
+                    color: 'red',
+                    fontSize: '30px'
+                  }
+                }
+            });
+
+            new Vue({
+                el:'#app14',
+                data:{
+                   myCheck: true
+                }
+            });
+
+            new Vue({
+                el:'#app15',
+                data:{
+                   myCheck: false,
+                   myCheck2: true
                 }
             });
         </script>
