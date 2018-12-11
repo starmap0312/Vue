@@ -16,6 +16,7 @@
             <!-- for debug, you can show the $data in json as follows -->
             <div>{{ $data | json }}</div>
         </div>
+        <br>
 
         <!-- example2: v-show/v-if & v-else-->
         <div id="app2">
@@ -30,10 +31,34 @@
             <p>Input score: 1 - 10</p>
             <input type="text" v-model="score">
         </div>
+        <br>
 
         <!-- example3: v-on:click -->
         <div id="app3">
+            <!-- trigger a callback function on click event, just like query: $('li span').on('click',function(){alert('hi')}); -->
             <input type="submit" value="show alert on click" v-on:click="clickme">
+        </div>
+        <br>
+
+        <!-- example4: v-on:click + v-model -->
+        <div id="app4">
+            <p>total clicks: {{count}} times</p>
+            <input type="submit" value="add to clicks" v-on:click="clickme">
+        </div>
+        <br>
+
+        <!-- example5: v-on:click with callback function that has parameters -->
+        <div id="app5">
+            <button v-on:click="handleIt('uh')">I say uh</button>
+            <button v-on:click="handleIt('ah')">you say ah</button>
+        </div>
+        <br>
+
+        <!-- example6: v-on:submit a form -->
+        <div id="app6">
+            <form action="submit.html" v-on:submit="handleIt">
+                <button type="submit">submit</button>
+            </form>
         </div>
 
         <script>
@@ -56,6 +81,36 @@
                 el:'#app3',
                 methods:{
                     clickme: function(){
+                        alert("here I am!");
+                    }
+                }
+            });
+
+            new Vue({
+                el:'#app4',
+                data:{
+                    count:0
+                },
+                methods:{
+                    clickme: function(){
+                         this.count += 1;
+                    }
+                }
+            });
+
+            new Vue({
+                el:'#app5',
+                methods:{
+                    handleIt: function(msg){
+                        alert(msg)
+                    }
+                }
+            });
+
+            new Vue({
+                el:'#app6',
+                methods:{
+                    handleIt: function(){
                         alert("here I am!");
                     }
                 }
