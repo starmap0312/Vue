@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
-   <!--reference: https://nowills.blogspot.com/search/label/Vue%20js?&max-results=8-->
+   <!-- reference: https://nowills.blogspot.com/search/label/Vue%20js?&max-results=8-->
     <head>
         <meta charset="UTF-8">
         <title>Hello World</title>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
     <body>
-        <div id="app">
-            {{ message }}
+        <!-- example1: v-model-->
+        <div id="app1">
+            <h1>{{ message }}</h1>
+            <input type="text" v-model="message">
+            <!-- v-model: when you change the v-model text value, you are changing the {{ message }} value in real-time -->
+
+            <!-- for debug, you can show the $data in json as follows -->
+            <div>{{ $data | json }}</div>
+        </div>
+
+        <!-- example2: v-show/v-if & v-else-->
+        <div id="app2">
+            <h1 class="error">Score = {{ score }}</h1>
+            <div v-show="score">
+                <!-- v-if removes the element directly-->
+                <p v-if="score >= 6">show the element if score >= 6</p>
+                <p v-else>show the element otherwise</p>
+                <!-- v-show uses css "dispaly:none" to hide the element -->
+                <p v-show="score >= 10">show the element if score >= 10</p>
+            </div>
+            <p>Input score: 1 - 10</p>
+            <input type="text" v-model="score">
+        </div>
+
+        <!-- example3: v-on:click -->
+        <div id="app3">
+            <input type="submit" value="show alert on click" v-on:click="clickme">
         </div>
 
         <script>
@@ -16,8 +41,24 @@
                 message:'Hello World!'
             }
             new Vue({
-                el:'#app',
+                el:'#app1',
                 data:data
+            });
+
+            new Vue({
+                el:'#app2',
+                data:{
+                    score:''
+                }
+            });
+
+            new Vue({
+                el:'#app3',
+                methods:{
+                    clickme: function(){
+                        alert("here I am!");
+                    }
+                }
             });
         </script>
     </body>
