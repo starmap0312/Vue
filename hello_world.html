@@ -145,6 +145,13 @@
             <prompt-component></prompt-component>
         </div>
 
+        <!--Ref: Vue.component: https://vuejs.org/v2/guide/components.html-->
+        <!-- props: custom attributes you can register on a component. -->
+        <!--        when a value is passed to a prop attribute, it becomes a property on that component instance-->
+        <div id="app18">
+            <blog-component v-for="post in posts" v-bind:id="post.postid" v-bind:title="post.name"> </blog-component>
+        </div>
+
         <script>
             var data = {
                 message:'Hello World!'
@@ -308,6 +315,21 @@
               el: '#app17'
             });
 
+
+            Vue.component('blog-component', {
+              props: ['id', 'title'],
+              template: '<h3>{{ id }} : {{ title }}</h3>'
+            })
+            new Vue({
+              el: '#app18',
+              data: {
+                posts: [
+                  { postid: 1, name: 'My journey with Vue' },
+                  { postid: 2, name: 'Blogging with Vue' },
+                  { postid: 3, name: 'Why Vue is so fun' }
+                ]
+              }
+            })
         </script>
     </body>
 </html>
