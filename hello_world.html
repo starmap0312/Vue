@@ -127,17 +127,24 @@
         </div>
         <br>
 
-        <!-- example14: v-bind:class: bind multiple (dynamic) css classes with Vue data  -->
+        <!-- example15: v-bind:class: bind multiple (dynamic) css classes with Vue data  -->
         <div id="app15">
             <div v-bind:class="{ active: myCheck , normal:myCheck2 }">123</div>
             <!-- i.e. <div class="normal">, the binding can be changed dynamically based on Vue data -->
         </div>
 
+        <!-- example16: Vue + axios (Promise based HTTP client for the browser and node.js)  -->
         <div id="app16">
             <p v-for="teacher in teachers">{{ teacher.name }}</p>
             <!-- the local api should return json string of: [{"name": "John"}, {"name": "Tom"}] -->
             <button @click="getAllTeacher">getTeachers</button>
         </div>
+
+        <!-- example17: Vue.component-->
+        <div id="app17">
+            <prompt-component></prompt-component>
+        </div>
+
         <script>
             var data = {
                 message:'Hello World!'
@@ -284,6 +291,23 @@
                 }
               }
             });
+
+            Vue.component('prompt-component', {
+              template: '<div><p>${ message }</p><button @click="sayHi">Say Hi!</button></div>',
+              delimiters: ['${', '}'],
+              data: function () {
+                return {
+                  message: 'Hello World!'
+                }
+              },
+              methods: {
+                sayHi: function() { alert('Hi'); }
+              }
+            })
+            new Vue({
+              el: '#app17'
+            });
+
         </script>
     </body>
 </html>
