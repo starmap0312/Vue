@@ -13,6 +13,7 @@ class handler(BaseHTTPRequestHandler):
                 self.wfile.write('[{"name": "John"}, {"name": "Tom"}]')
             else:
                 # http://localhost:9000/hello_world.html
+                self.path = "/hello_world.html"
                 with open(os.curdir + os.sep + self.path) as fout:
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
