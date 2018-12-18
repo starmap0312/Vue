@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" v-bind:prop1="msg">
+  <div class="hello">
     <h1>{{ msg }}</h1>
     <h1>name: {{ this.$route.name }}</h1>
     <!-- http://localhost:8080/#/HelloWorld/somepath -->
@@ -13,6 +13,7 @@
 <script>
 export default {
   name: 'HelloWorld',
+  delimiters: ['${', '}'],
   props: ['prop1'],
   data () {
     return {

@@ -6,11 +6,11 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    //{ path: '/', redirect: { name: 'HelloWorld' }},
     {
       path: '/HelloWorld/:segment',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: HelloWorld,
+      props: (route) => ({ prop1: route.params.segment })
     }
   ]
 })
