@@ -6,7 +6,7 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/', redirect: { name: 'HelloWorld' }},
+    //{ path: '/', redirect: { name: 'HelloWorld' }},
     {
       path: '/HelloWorld/:segment',
       name: 'HelloWorld',

@@ -147,6 +147,11 @@
             <prompt-component></prompt-component>
         </div>
 
+        <!-- example17-2: Vue.component-->
+        <div id="app17-2">
+            <prompt-component-2 :user-name="name"></prompt-component-2>
+        </div>
+
         <!--Ref: Vue.component: https://vuejs.org/v2/guide/components.html-->
         <!-- props: custom attributes you can register on a component. -->
         <!--        when a value is passed to a prop attribute, it becomes a property on that component instance-->
@@ -318,6 +323,27 @@
               el: '#app17'
             });
 
+
+            Vue.component('prompt-component-2', {
+              template: '<div><p>${ message }</p><button @click="sayHi(userName)">Say Hi!</button></div>',
+              delimiters: ['${', '}'],
+              props: ['user-name'],
+              data: function () {
+                return {
+                  message: 'Hello World!'
+                }
+              },
+              methods: {
+                sayHi: function(name) { alert('Hi, ' + name); }
+              }
+            })
+            new Vue({
+              el: '#app17-2',
+              delimiters: ['${', '}'],
+              data: {
+                name: 'Peter'
+              }
+            });
 
             Vue.component('blog-component', {
               props: ['id', 'title'],
