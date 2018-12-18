@@ -11,9 +11,8 @@ class handler(BaseHTTPRequestHandler):
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 self.wfile.write('[{"name": "John"}, {"name": "Tom"}]')
-            else:
+            elif self.path == "/hello_world.html":
                 # http://localhost:9000/hello_world.html
-                self.path = "/hello_world.html"
                 with open(os.curdir + os.sep + self.path) as fout:
                     self.send_response(200)
                     self.send_header('Content-type', 'text/html')
@@ -23,7 +22,7 @@ class handler(BaseHTTPRequestHandler):
             self.send_error(404,'File Not Found: %s' % self.path)
 
 try:
-    print('Startint server at: {0}'.format('http://localhost:{0}'.format(9000)))
+    print('Startint server at: {0}'.format('http://localhost:{0}/hello_world.html'.format(9000)))
     server = HTTPServer(('', 9000), handler)
     print('Control+C to shutdown the server')
     server.serve_forever()
