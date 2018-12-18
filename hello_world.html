@@ -152,6 +152,7 @@
         <!--        when a value is passed to a prop attribute, it becomes a property on that component instance-->
         <div id="app18">
             <blog-component v-for="post in posts" v-bind:id="post.postid" v-bind:title="post.name"> </blog-component>
+            <!-- v-bind:id="..." bind Vue prop: id to a string, note: v-bind can be omitted for shorthand, i.e. :id="..." -->
         </div>
 
         <script>
