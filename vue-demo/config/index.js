@@ -10,8 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
-
+    proxyTable: {
+      '/data': {                        // map local call /data (PROXY) to remote service http://data.taipei (SERVER)
+        target: 'http://data.taipei/',  // will be relayed to remote (SERVER) 
+        changeOrigin: true,             // automatically modify http header Host
+        pathRewrite: {
+          '^/data': ''
+        }
+      }
+    },
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
