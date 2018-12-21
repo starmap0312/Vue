@@ -7,10 +7,9 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/HelloWorld/:segment',
+      path: '/',
       name: 'HelloWorld',
-      component: HelloWorld,
-      props: (route) => ({ prop1: route.params.segment })
+      component: HelloWorld
     }
   ]
 })
